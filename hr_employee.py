@@ -47,7 +47,7 @@ class hr_employee(models.Model):
 		print employee_ids,'employee_idsss'
 		dictionary = {}
 		face_encoding = {}
-		for employee in employee_ids:
+		for employee in ids:
 			employees = employee_obj.browse(cr,uid,employee)
 			# dictionary[employees.name] = "http://127.0.6.1:7777/web/binary/image?model=hr.employee&field=image_medium&id="+str(employee)
 			# urllib.urlretrieve("/web/binary/image?model=hr.employee&field=image_medium&id="+str(employee), str(employee)+"_uid.png")
@@ -55,10 +55,13 @@ class hr_employee(models.Model):
 			# print imgstring
 			if imgstring:
 				convert = base64.b64decode(imgstring)
-
-				t = open("lebahganteng.png", "w+")
+				file = ("lebahganteng%s.png")% employee
+				print file,'davidddd'
+				t = open(file, "w+")
 				t.write(convert)
 				t.close()
+				biden_image = face_recognition.load_image_file(file)
+				print biden_image,'david'
 			# imgdata = base64.b64decode(imgstring)
 			# filename = 'some_image.png'  # I assume you have a way of picking unique filenames
 			# with open(filename, 'wb') as f:
