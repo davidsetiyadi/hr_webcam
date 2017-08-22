@@ -30,7 +30,7 @@ class hr_employee(models.Model):
 	
 	def detect(img, cascade):
 		rects = cascade.detectMultiScale(img, scaleFactor=1.3, minNeighbors=4, minSize=(30, 30),
-		                             flags=cv2.CASCADE_SCALE_IMAGE)
+									 flags=cv2.CASCADE_SCALE_IMAGE)
 		if len(rects) == 0:
 			return []
 		rects[:,2:] += rects[:,:2]
@@ -43,7 +43,7 @@ class hr_employee(models.Model):
 	def action_take_opencv(self, cr, uid, ids, context=None):
 		print 'David_____________TESTET'
 		employee_obj = self.pool.get('hr.employee')
-		employee_ids = employee_obj.search(cr,uid,[],limit=3)
+		employee_ids = employee_obj.search(cr,uid,[],limit=100)
 		print employee_ids,'employee_idsss'
 		dictionary = {}
 		face_encoding = {}
@@ -51,12 +51,18 @@ class hr_employee(models.Model):
 			employees = employee_obj.browse(cr,uid,employee)
 			# dictionary[employees.name] = "http://127.0.6.1:7777/web/binary/image?model=hr.employee&field=image_medium&id="+str(employee)
 			# urllib.urlretrieve("/web/binary/image?model=hr.employee&field=image_medium&id="+str(employee), str(employee)+"_uid.png")
-			imgstring = employees.image_medium
-			print imgstring
-			imgdata = base64.b64decode(imgstring)
-			filename = 'some_image.png'  # I assume you have a way of picking unique filenames
-			with open(filename, 'wb') as f:
-			    f.write(imgdata)
+			imgstring = employees.image
+			# print imgstring
+			if imgstring:
+				convert = base64.b64decode(imgstring)
+
+				t = open("lebahganteng.png", "w+")
+				t.write(convert)
+				t.close()
+			# imgdata = base64.b64decode(imgstring)
+			# filename = 'some_image.png'  # I assume you have a way of picking unique filenames
+			# with open(filename, 'wb') as f:
+			#     f.write(imgdata)
 			# dictionary[employees.name] = face_recognition.load_image_file("http://127.0.6.1:7777/web/binary/image?model=hr.employee&field=image_medium&id="+str(employee))
 			# print dictionary[employee.name],'dictionaryyyy'
 			# face_encoding [employees.name] = face_recognition.face_encodings(dictionary[employees.name][0])
