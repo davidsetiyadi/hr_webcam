@@ -9,7 +9,34 @@
             <field name="arch" type="xml">
                 <tree string="array">
                     <field name="name"/>
+                    <field name="employee_id"/>
                 </tree>
+            </field>
+        </record>
+        <record id="webcam_array_form_view" model="ir.ui.view">
+            <field name="name">webcam.array.form</field>
+            <field name="model">webcam.array</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Array">
+                   
+                    <sheet>
+                         <field name="image" widget="image" class="oe_left oe_avatar"/>
+                        <div class="oe_title">                            
+                            <label for="name"/>
+                            <h1>
+                                <field name="name" default_focus="1" placeholder="Name" required="1"/>
+                            </h1>
+                        </div>
+
+                        <group col="4" colspan="2">
+                            <field name="employee_id" required="1" />                                                      
+                        </group>
+                        
+                        <separator string="Array Image" />
+                        <field name="array"/>
+                    </sheet>
+                </form>
             </field>
         </record>
         <record id="action_webcam_array" model="ir.actions.act_window">
