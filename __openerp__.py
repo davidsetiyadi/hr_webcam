@@ -48,8 +48,10 @@ Capture employee pictures with an attached web cam.
         'static/src/xml/hr_webcam.xml',
     ],
     'data': [
+        'security/ir.model.access.csv',
         'hr_webcam_data.xml',
         'hr_webcam_view.xml',
+        'webcam_array.xml',
     ],
     'installable': True,
     'active': False,

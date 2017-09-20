@@ -20,3 +20,4 @@
 #
 
 from . import hr_employee
+import webcam_array

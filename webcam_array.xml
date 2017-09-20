@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        
+        <record id="webcam_array_tree_view" model="ir.ui.view">
+            <field name="name">webcam.array.tree</field>
+            <field name="model">webcam.array</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="array">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        <record id="action_webcam_array" model="ir.actions.act_window">
+            <field name="name">Webcam array</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">webcam.array</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+        </record>
+        <menuitem action="action_webcam_array"
+            id="menu_action_webcam_array"
+            parent="hr.menu_hr_root"
+            sequence="1"/>
+    </data>
+</openerp>
