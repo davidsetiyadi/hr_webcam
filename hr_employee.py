@@ -41,13 +41,13 @@ class hr_employee(models.Model):
 			cv2.rectangle(img, (x1, y1), (x2, y2), color, 2)
 
 	def action_take_opencv(self, cr, uid, ids, context=None):
-		print 'David_____________TESTET'
+		# print 'David_____________TESTET'
 		employee_obj = self.pool.get('hr.employee')
 		employee_ids = employee_obj.search(cr,uid,[],limit=100)
-		print employee_ids,'employee_idsss'
+		# print employee_ids,'employee_idsss'
 		dictionary = {}
 		face_encoding = {}
-		for employee in ids:
+		for employee in employee_ids:
 			employees = employee_obj.browse(cr,uid,employee)
 			# dictionary[employees.name] = "http://127.0.6.1:7777/web/binary/image?model=hr.employee&field=image_medium&id="+str(employee)
 			# urllib.urlretrieve("/web/binary/image?model=hr.employee&field=image_medium&id="+str(employee), str(employee)+"_uid.png")
@@ -56,12 +56,12 @@ class hr_employee(models.Model):
 			if imgstring:
 				convert = base64.b64decode(imgstring)
 				file = ("lebahganteng%s.png")% employee
-				print file,'davidddd'
+				# print file,'davidddd'
 				t = open(file, "w+")
 				t.write(convert)
 				t.close()
 				biden_image = face_recognition.load_image_file(file)
-				print biden_image,'david'
+				# print biden_image,'david'
 			# imgdata = base64.b64decode(imgstring)
 			# filename = 'some_image.png'  # I assume you have a way of picking unique filenames
 			# with open(filename, 'wb') as f:
@@ -88,3 +88,4 @@ class hr_employee(models.Model):
 		# # results is an array of True/False telling if the unknown face matched anyone in the known_faces array
 		# results = face_recognition.compare_faces(known_faces, unknown_face_encoding)
 		print dictionary
+		return True
